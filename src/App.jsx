@@ -6,7 +6,14 @@ function App() {
   // let i = 0;
   return (
     <>
-      <CardWrapper innerComponent={<TextComponent />} />
+      <CardWrapper>
+        <CardWrapper>
+          <div>
+            <h1>Bacha hai yaha</h1>
+          </div>
+        </CardWrapper>
+      </CardWrapper>
+      {/* <CardWrapper innerComponent={<TextComponent />} /> */}
       {/* <TaskAdder todo={todo} setTodo={setTodo}></TaskAdder>
       {console.log(todo.length)}
       <TaskDisplayer todo={todo}></TaskDisplayer> */}
@@ -18,8 +25,8 @@ function TextComponent() {
   return <h1>hi there</h1>;
 }
 
-function CardWrapper({ innerComponent }) {
-  return <div style={{ border: "2px solid black" }}>{innerComponent}</div>;
+function CardWrapper({ children }) {
+  return <div style={{ border: "2px solid black" }}>{children}</div>;
 }
 
 // // function TaskDisplayer(props) {
