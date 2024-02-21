@@ -4,37 +4,38 @@ import "./App.css";
 
 function App() {
   const [todos, setTodos] = useState([]);
-  const [id, setId] = useState(0);
+  // const [id, setId] = useState(0);
   //changed from todo to todos...some code might break
-  useEffect(() => {
-    console.log(id);
-    // try {
-    axios
-      .get("https://sum-server.100xdevs.com/todo?id=" + id)
-      .then(function (response) {
-        // console.log(response);
-        const arr = [];
-        if (response.data.todo) {
-          console.log(response.data.todo);
-          // console.log(typeof response.data.todo);
-          arr.push(response.data.todo);
-        }
-        setTodos(arr);
-      });
-    // } catch {}
-  }, [id]);
+  // useEffect(() => {
+  //   console.log(id);
+  //   // try {
+  //   axios
+  //     .get("https://sum-server.100xdevs.com/todo?id=" + id)
+  //     .then(function (response) {
+  //       // console.log(response);
+  //       const arr = [];
+  //       if (response.data.todo) {
+  //         console.log(response.data.todo);
+  //         // console.log(typeof response.data.todo);
+  //         arr.push(response.data.todo);
+  //       }
+  //       setTodos(arr);
+  //     });
+  //   // } catch {}
+  // }, [id]);
 
   // let i = 0;
   return (
     <>
-      <GetId setId={setId} id={id} />
-      <div>
-        {/* {console.log("IN")}
+      <GetSum></GetSum>
+      {/* <GetId setId={setId} id={id} /> */}
+      {/* <div> */}
+      {/* {console.log("IN")}
         {console.log(todos)} */}
-        {todos.map((todo) => (
-          <Todo title={todo.title} description={todo.description}></Todo>
-        ))}
-      </div>
+      {todos.map((todo) => (
+        <Todo title={todo.title} description={todo.description}></Todo>
+      ))}
+      {/* </div> */}
       {/* <div> */}
 
       {/* <CardWrapper>
@@ -70,6 +71,46 @@ function GetId(props) {
       >
         Submit
       </button>
+    </>
+  );
+}
+
+function sum(a) {
+  if (a == NaN || a == undefined) {
+    return 0;
+  }
+  console.log(typeof a);
+  console.log(a);
+  let val = parseInt(a);
+
+  console.log(val);
+  val = parseInt(val);
+  if (val <= 1) {
+    return val;
+  }
+  let summ = val - 1;
+  return val + sum(summ);
+}
+
+function GetSum() {
+  // const [summ, setSum] = useState("");
+  const [totalSum, setTotal] = useState(0);
+  const [counter, setCounter] = useState(0);
+  // let val = sum(parseInt(summ));
+  return (
+    <>
+      <h1>{counter}</h1>
+      <button onClick={() => setCounter(counter + 1)}>Increase counter</button>
+      <br />
+      <br />
+      <input
+        type="number"
+        placeholder="Input num"
+        onChange={(e) => {
+          setTotal(sum(e.target.value));
+        }}
+      ></input>
+      <h1>Sum is {totalSum}</h1>
     </>
   );
 }
